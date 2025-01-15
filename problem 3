@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<string.h>
+
+typedef struct employee {
+	char code[10];
+	char name[50];
+	int joining;
+
+} emp;
+
+
+
+int main() {
+	int n;
+	printf("Enter no of employees: ");
+	scanf("%d",&n);
+	emp arr[n];
+	for(int i = 0; i<n; i++) {
+		printf("Enter employee[%d] code: ",i+1);
+		scanf("%s",arr[i].code);
+
+		printf("Enter employee[%d] name: ",i+1);
+		scanf(" %[^\n]s",arr[i].name);
+
+		printf("Enter year of joining: ");
+		scanf("%d",&arr[i].joining);
+
+		printf("\n");
+	}
+
+	int currentyear;
+	printf("Enter current year: ");
+	scanf("%d",&currentyear);
+	for(int i = 0; i<n; i++) {
+		if(currentyear - arr[i].joining >= 3) {
+			printf("Name : %s\n",arr[i].name);
+
+		}
+	}
+	return 0;
+}
