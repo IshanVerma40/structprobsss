@@ -1,0 +1,119 @@
+#include<stdio.h>
+#include<string.h>
+typedef struct
+{
+    int acc;
+    char title[100];
+    char name[100];    // stores name of the author
+    int price;
+    int flag;
+}Library;
+
+
+int main()
+{
+    int n;
+    printf("Enter capacity of library:\n");
+    scanf("%d",&n);
+    Library book[n];
+    int c = 0,choice;
+    do{
+        printf("Enter 1 to Add book information\n");
+        printf("Enter 2 to display book information\n");
+        printf("Enter 3 to List all books of given author\n");
+        printf("Enter 4 to List the title of specified book\n");
+        printf("Enter 5 to List the count of books in the library\n");
+        printf("Enter 6 List the books in the order of accession number\n");
+        printf("Enter 7 to exit\n");
+        printf("Enter your choice:");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+                for(int i = 0;i<n;i++)
+                {
+                    printf("Enter accession number:\n");
+                    scanf("%d",&book[i].acc);
+                    printf("Enter title of the book:\n");
+                    scanf("%s",&book[i].title);
+                    printf("Enter name of author:\n");
+                    scanf("%s",&book[i].name);
+                    printf("Enter price:\n");
+                    scanf("%d",&book[i].price);
+                    printf("Enter 0 if book is issued else 1:\n");
+                    scanf("%d",&book[i].flag);
+                }
+            break;
+            case 2:
+                char title[100];
+                printf("Enter title of book:");
+                scanf("%s",&title);
+                for(int i = 0;i<n;i++)
+                    if(strcmp(title,book[i].title) == 0)
+                        {
+                            printf("Accession number:%d\n",book[i].acc);
+                            printf("Title of the book:%s\n",book[i].title);
+                            printf("Name of the author:%s\n",book[i].name);
+                            printf("Price:%d\n",book[i].price);
+                            if(book[i].flag == 0)
+                                printf("Book is issued\n");
+                            else
+                                printf("Book is available\n");
+                            break;
+                        }
+            break;
+            case 3:
+                char author[30];
+                printf("Enter name of the author:\n");
+                scanf("%s",&author);
+                printf("Books are:");
+                for(int i = 0;i<n;i++)
+                {
+                    if(strcmp(author,book[i].name) == 0)
+                        printf("%s\n",book[i].title);
+                }
+            break;
+            case 4:
+                int i;
+                printf("Enter the book number:\n");
+                scanf("%d",&i);
+                printf("Title of the book:%s\n",book[i-1].title);
+                break;
+            case 5:
+                printf("Number of books:%d\n",n);
+            break;
+            case 6:
+                for(int i = 1;i<n;i++)
+                {
+                    for(int j = 0;j<n-i;j++)
+                    {
+                        if(book[j].acc > book[j+1].acc)
+                        {
+                            Library t = book[j];
+                            book[j] = book[j+1];
+                            book[j+1] = t;
+                        }
+                    }
+                }
+                for(int i = 0;i<n;i++)
+                {
+                    printf("\n");
+                    printf("Accession number:%d\n",book[i].acc);
+                    printf("Title of the book:%s\n",book[i].title);
+                    printf("Name of the author:%s\n",book[i].name);
+                    printf("Price:%d\n",book[i].price);
+                    if(book[i].flag == 0)
+                        printf("Book is issued\n");
+                    else
+                        printf("Book is available\n");
+                }
+            break;
+            case 7:
+                printf("Exiting...");
+                break;
+            default:
+                printf("Invalid Choice");
+        }
+    }while(choice != 7);
+    return 0;
+}
