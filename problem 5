@@ -1,0 +1,40 @@
+#include<stdio.h>
+
+typedef struct date {
+	int day;
+	int month;
+	int year;
+} date;
+int compare(date x, date y) {
+	int check = 0;
+	if(x.day != y.day) {
+		check = 1;
+	}
+	if(x.month != y.month) {
+		check = 1;
+	}
+	if(x.year != y.year) {
+		check = 1;
+	}
+
+	if(check == 1) {
+		return 1;
+	}
+	else {
+		return 0;
+	}
+
+
+
+}
+int main() {
+	date d1, d2;
+	printf("Enter Date 1 in DD MM YYYY format: ");
+	scanf("%d %d %d",&d1.day, &d1.month, &d1.year);
+
+	printf("Enter Date 2 in DD MM YYYY format: ");
+	scanf("%d %d %d",&d2.day, &d2.month, &d2.year);
+
+	printf("%d",compare(d1,d2));
+	return 0;
+}
