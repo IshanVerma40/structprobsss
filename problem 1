@@ -1,0 +1,73 @@
+#include<stdio.h>
+typedef struct{
+    int roll;
+    char name[15];
+    char dep[50];
+    char cou[50];
+    int y;
+}Student;
+void printNames(Student s[],int n,int year)
+{
+    printf("Names are:\n");
+    for(int i = 0;i < n; i++)
+    {
+        
+        if(s[i].y == year)
+        {
+          printf("%s\n",s[i].name);
+          
+        }
+    }
+}
+void printdata(Student s[],int n,int roll)
+{
+    for(int i = 0;i<n; i++)
+    {
+        if(s[i].roll == roll)
+        {
+            printf("Name:%s\n",s[i].name);
+            printf("Roll number:%d\n",s[i].roll);
+            printf("Department:%s\n",s[i].dep);
+            printf("Course:%s\n",s[i].cou);
+            printf("Year:%d\n",s[i].y);
+            break;
+        }
+    }
+}
+int main()
+{
+    int n,y;
+    printf("Enter number of students:\n");
+    scanf("%d",&n);
+    Student s[n];
+    for(int i = 0; i < n; i++)
+    {
+        printf("Enter %d students details\n",i+1);
+        printf("Enter roll no:\n");
+        scanf("%d",&s[i].roll);
+        printf("Enter Name:\n");
+        scanf("%s",s[i].name);
+        printf("Enter department:\n");
+        scanf("%s",s[i].dep);
+        printf("Enter course:\n");
+        scanf("%s",s[i].cou);
+        printf("Enter year:\n");
+        scanf("%d",&s[i].y);
+    }
+    int choice,x;
+    printf("Enter choice:\n");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+        case 1:
+            printf("Enter year:\n");
+            scanf("%d",&y);
+            printNames(s,n,y);
+        break;
+        case 2:
+            printf("Enter roll no:\n");
+            scanf("%d",&x);
+            printdata(s,n,x);
+    }
+    return 0;
+}
